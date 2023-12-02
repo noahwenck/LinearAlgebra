@@ -1,4 +1,4 @@
-package com.wenck.linearalgebra.RowReduction;
+package com.wenck.linearalgebra.rowreduction;
 
 import org.springframework.stereotype.Controller;
 

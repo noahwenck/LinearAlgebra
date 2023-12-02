@@ -1,4 +1,4 @@
-package com.wenck.linearalgebra.Matrix;
+package com.wenck.linearalgebra.matrix;
 
 /**
  * TODO: add javadoc

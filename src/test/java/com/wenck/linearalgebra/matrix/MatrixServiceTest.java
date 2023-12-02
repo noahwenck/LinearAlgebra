@@ -1,7 +1,5 @@
-package com.wenck.linearalgebra;
+package com.wenck.linearalgebra.matrix;
 
-import com.wenck.linearalgebra.Matrix.Matrix;
-import com.wenck.linearalgebra.Matrix.MatrixService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

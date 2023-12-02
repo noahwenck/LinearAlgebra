@@ -1,4 +1,4 @@
-package com.wenck.linearalgebra.Matrix;
+package com.wenck.linearalgebra.matrix;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

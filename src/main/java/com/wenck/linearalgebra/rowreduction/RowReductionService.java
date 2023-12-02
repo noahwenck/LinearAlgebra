@@ -1,6 +1,6 @@
-package com.wenck.linearalgebra.RowReduction;
+package com.wenck.linearalgebra.rowreduction;
 
-import com.wenck.linearalgebra.Matrix.Matrix;
+import com.wenck.linearalgebra.matrix.Matrix;
 import org.springframework.stereotype.Service;
 
 /**
