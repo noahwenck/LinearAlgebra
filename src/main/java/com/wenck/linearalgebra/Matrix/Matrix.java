@@ -27,7 +27,23 @@ public class Matrix {
      * @param rows number of rows
      * @param cols number of columns
      */
-    public Matrix(int rows, int cols) {} // TODO: implement identity matrix of inputted size
+    public Matrix(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
+        this.matrix = new double[rows][cols];
+
+        int i = 1;
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < cols; column++) {
+                this.matrix[row][column] = i;
+                if (i == 1) { // lmao
+                    i = 0;
+                } else {
+                    i = 1;
+                }
+            }
+        }
+    }
 
     /**
      * Creates a nxm Matrix from the provided 2d array, where n is the number of rows and m is the number of columns
