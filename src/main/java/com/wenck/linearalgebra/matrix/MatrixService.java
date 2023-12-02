@@ -5,18 +5,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
- * TODO: javadoc
+ * Service classes for backend processes relating to matrices
  */
 @Service
 public class MatrixService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MatrixService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MatrixService.class);
     public MatrixService() {}
 
+    /**
+     * Performs an addition operation for two matrices
+     *
+     * @param targetMatrix
+     * @param sourceMatrix
+     * @return matrix sum of the inputted matrices
+     */
     public Matrix addition(Matrix targetMatrix, Matrix sourceMatrix) {
         if (targetMatrix.getRows() != sourceMatrix.getRows()
                 || targetMatrix.getCols() != sourceMatrix.getCols()) {
-            LOGGER.error("Matrix Addition -> Matrix Sizes don't match");
+            LOG.error("Matrix Addition -> Matrix Sizes don't match");
             throw new IllegalArgumentException();
         }
 
@@ -31,10 +38,17 @@ public class MatrixService {
         return new Matrix(targetMatrix.getRows(), targetMatrix.getCols(), additionArray);
     }
 
+    /**
+     * Performs a subtraction operation for two matrices
+     *
+     * @param targetMatrix
+     * @param sourceMatrix
+     * @return matrix difference of the inputted matrices
+     */
     public Matrix subtraction(Matrix targetMatrix, Matrix sourceMatrix) {
         if (targetMatrix.getRows() != sourceMatrix.getRows()
                 || targetMatrix.getCols() != sourceMatrix.getCols()) {
-            LOGGER.error("Matrix Subtraction -> Matrix Sizes don't match");
+            LOG.error("Matrix Subtraction -> Matrix Sizes don't match");
             throw new IllegalArgumentException();
         }
 
@@ -49,6 +63,13 @@ public class MatrixService {
         return new Matrix(targetMatrix.getRows(), targetMatrix.getCols(), additionArray);
     }
 
+    /**
+     * Performs a scale operation on a matrix
+     *
+     * @param targetMatrix
+     * @param scalar
+     * @return scaled matrix
+     */
     public Matrix scale(Matrix targetMatrix, double scalar) {
         double[][] scaleArray = new double[targetMatrix.getRows()][targetMatrix.getCols()];
         for (int row = 0; row < targetMatrix.getRows(); row++) {
@@ -77,6 +98,12 @@ public class MatrixService {
 //        }
 //    }
 
+    /**
+     * Performs a transpose operation on a matrix
+     *
+     * @param targetMatrix
+     * @return transpose of the inputted matrix
+     */
     public Matrix transpose(Matrix targetMatrix) {
         Matrix matrix = new Matrix(targetMatrix.getCols(), targetMatrix.getRows());
         double[][] transposeArray = new double[targetMatrix.getCols()][targetMatrix.getRows()];

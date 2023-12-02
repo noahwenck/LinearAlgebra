@@ -12,7 +12,14 @@ public class RowReductionService {
 
     public RowReductionService() {}
 
-    // TODO: javadoc
+    /**
+     * Performs the replacement operation
+     *
+     * @param targetRow row to be replaced
+     * @param sourceRow row to be scaled, then added onto targetRow
+     * @param scalar scale for sourceRow
+     * @param matrix inputted matrix
+     */
     public void replacement(int targetRow, int sourceRow, double scalar, Matrix matrix) {
         double[][] arrayRepresentation = matrix.getMatrix();
         for (int column = 0; column < matrix.getCols(); column++) {
@@ -23,7 +30,13 @@ public class RowReductionService {
         matrix.setMatrix(arrayRepresentation);
     }
 
-    // TODO: javadoc
+    /**
+     * Performs the interchange operation
+     *
+     * @param targetRow row to be swapped with sourceRow
+     * @param sourceRow row to be swapped with targetRow
+     * @param matrix inputted matrix
+     */
     public void interchange(int targetRow, int sourceRow, Matrix matrix) {
         double[][] arrayRepresentation = matrix.getMatrix();
         double[] temp = arrayRepresentation[targetRow];
@@ -32,7 +45,13 @@ public class RowReductionService {
         matrix.setMatrix(arrayRepresentation);
     }
 
-    // TODO: javadoc
+    /**
+     * Performs the scaling operation
+     *
+     * @param targetRow row to be scaled
+     * @param scalar scale for targetRow
+     * @param matrix inputted matrix
+     */
     public void scaling(int targetRow, double scalar, Matrix matrix) {
         double[][] arrayRepresentation = matrix.getMatrix();
         for (int column = 0; column < matrix.getCols(); column++) {
@@ -113,7 +132,14 @@ public class RowReductionService {
 
     }
 
-    // todo: javadoc
+    /**
+     * Determines what column a row's pivot is in
+     *
+     * For Example: the identity matrix would return the array -> [0, 1]
+     *
+     * @param matrix inputted matrix
+     * @return array that indicates what column a row's pivot is in
+     */
     private int[] findPivots(Matrix matrix) {
         int[] ret = new int[matrix.getRows()];
         for (int r = 0; r < matrix.getRows(); r++) {
