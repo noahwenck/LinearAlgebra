@@ -96,6 +96,8 @@ public class MatrixService {
         double[][] multiplicationArray = new double[targetMatrix.getRows()][sourceMatrix.getCols()];
         for (int row = 0; row < targetMatrix.getRows(); row++) {
             for (int column = 0; column < sourceMatrix.getCols(); column++) {
+                // This is my solution to the odd nature of matrix multiplication,
+                // don't dwell on it, just accept it and move on
                 for (int innerValue = 0; innerValue < sourceMatrix.getRows(); innerValue++) {
                     multiplicationArray[row][column] += targetMatrix.getMatrix()[row][innerValue]
                                                             * sourceMatrix.getMatrix()[innerValue][column];
