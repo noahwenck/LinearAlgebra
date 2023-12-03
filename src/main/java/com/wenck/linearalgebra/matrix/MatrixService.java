@@ -81,22 +81,30 @@ public class MatrixService {
         return new Matrix(targetMatrix.getRows(), targetMatrix.getCols(), scaleArray);
     }
 
-    // todo: cry
-//    public Matrix multiplication(Matrix targetMatrix, Matrix sourceMatrix) {
-//        if (targetMatrix.getRows() != sourceMatrix.getCols()
-//                || targetMatrix.getCols() != sourceMatrix.getRows()) {
-//            throw new IllegalArgumentException();
-//        }
-//
-//        double[][] multiplicationArray = new double[targetMatrix.getRows()][sourceMatrix.getCols()];
-//        for (int row = 0; row < targetMatrix.getRows(); row++) {
-//            for (int column = 0; column < sourceMatrix.getCols(); column++) {
-//                for (int sourceRow = 0; sourceRow < sourceMatrix.getRows(); sourceRow++) {
-//                    multiplicationArray[row][column] = targetMatrix.getMatrix()[row][column]
-//                }
-//            }
-//        }
-//    }
+    /**
+     * Performs a multiplicaiton operation for two matrices
+     *
+     * @param targetMatrix matrix A
+     * @param sourceMatrix matrix B
+     * @return matrix product of the inputted matrices
+     */
+    public Matrix multiplication(Matrix targetMatrix, Matrix sourceMatrix) {
+        if (targetMatrix.getCols() != sourceMatrix.getRows()) {
+            throw new IllegalArgumentException();
+        }
+
+        double[][] multiplicationArray = new double[targetMatrix.getRows()][sourceMatrix.getCols()];
+        for (int row = 0; row < targetMatrix.getRows(); row++) {
+            for (int column = 0; column < sourceMatrix.getCols(); column++) {
+                for (int innerValue = 0; innerValue < sourceMatrix.getRows(); innerValue++) {
+                    multiplicationArray[row][column] += targetMatrix.getMatrix()[row][innerValue]
+                                                            * sourceMatrix.getMatrix()[innerValue][column];
+                }
+            }
+        }
+
+        return new Matrix(targetMatrix.getRows(), sourceMatrix.getCols(), multiplicationArray);
+    }
 
     /**
      * Performs a transpose operation on a matrix
@@ -113,7 +121,6 @@ public class MatrixService {
             }
         }
 
-        matrix.setMatrix(transposeArray);
-        return matrix;
+        return new Matrix(targetMatrix.getCols(), targetMatrix.getRows(), transposeArray);
     }
 }

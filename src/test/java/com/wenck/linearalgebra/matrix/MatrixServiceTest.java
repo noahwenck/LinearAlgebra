@@ -81,15 +81,59 @@ public class MatrixServiceTest {
         assertTrue(testMatrix.equals(expectedMatrix));
     }
 
-//    @Test
-//    void testMultiplicationIllegalArgument() {
-//        Matrix wrongSizedMatrix = new Matrix(3, 3);
-//
-//        assertThrows(IllegalArgumentException.class,
-//                () -> {
-//                    matrixService.multiplication(IDENTITYMATRIX, wrongSizedMatrix);
-//                });
-//    }
+    @Test
+    void testMultiplicationIllegalArgument() {
+        Matrix wrongSizedMatrix = new Matrix(3, 3);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    matrixService.multiplication(IDENTITYMATRIX, wrongSizedMatrix);
+                });
+    }
+
+    @Test
+    void testMultiplicationSameSize() {
+        Matrix matrix = new Matrix(2,
+                2,
+                new double[][] {
+                        {1, 2},
+                        {3, 4}
+                });
+        Matrix expectedMatrix = new Matrix(2,
+                2,
+                new double[][] {
+                        {7, 10},
+                        {15, 22}
+                });
+
+        Matrix testMatrix = matrixService.multiplication(matrix, matrix);
+        assertTrue(testMatrix.equals(expectedMatrix));
+    }
+
+    @Test
+    void testMultiplicationDifferentSize() {
+        Matrix matrix1 = new Matrix(2,
+                2,
+                new double[][] {
+                        {1, 2},
+                        {3, 4}
+                });
+        Matrix matrix2 = new Matrix(2,
+                3,
+                new double[][] {
+                        {5, 6, 7},
+                        {8, 9, 10}
+                });
+        Matrix expectedMatrix = new Matrix(2,
+                3,
+                new double[][] {
+                        {21, 24, 27},
+                        {47, 54, 61}
+                });
+
+        Matrix testMatrix = matrixService.multiplication(matrix1, matrix2);
+        assertTrue(testMatrix.equals(expectedMatrix));
+    }
 
     @Test
     void testTranspose() {
