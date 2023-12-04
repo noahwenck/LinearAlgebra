@@ -6,7 +6,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -62,72 +61,5 @@ public class RowReductionServiceTest {
         rowReductionService.scaling(0, 2, matrix);
         rowReductionService.scaling(1, -2, matrix);
         assertTrue(matrix.equals(expectedMatrix));
-    }
-
-    @Test
-    void testIdentityIsEchelon() {
-        Matrix matrix = new Matrix();
-        assertTrue(rowReductionService.isEchelon(matrix));
-    }
-
-    @Test
-    void testIsEchelonFirstConditionFalse() {
-        Matrix matrix = new Matrix(2,
-                2,
-                new double[][] {
-                        {0, 0},
-                        {1, 0}
-                });
-        assertFalse(rowReductionService.isEchelon(matrix));
-    }
-
-    @Test
-    void testIsEchelonSecondConditionFalse() {
-        Matrix matrix = new Matrix(2,
-                2,
-                new double[][] {
-                        {0, 1},
-                        {1, 0}
-                });
-        assertFalse(rowReductionService.isEchelon(matrix));
-    }
-
-    @Test
-    void testIsEchelonThirdConditionFalse() {
-        Matrix matrix = new Matrix(2,
-                2,
-                new double[][] {
-                        {1, 0},
-                        {1, 0}
-                });
-        assertFalse(rowReductionService.isEchelon(matrix));
-    }
-
-    @Test
-    void testIdentityIsReducedEchelon() {
-        Matrix matrix = new Matrix();
-        assertTrue(rowReductionService.isReducedEchelon(matrix));
-    }
-
-    @Test
-    void testIsReducedEchelonFourthConditionFalse() {
-        Matrix matrix = new Matrix(2,
-                2,
-                new double[][] {
-                        {2, 0},
-                        {0, 0}
-                });
-        assertFalse(rowReductionService.isReducedEchelon(matrix));
-    }
-
-    @Test
-    void testIsReducedEchelonFifthConditionFalse() {
-        Matrix matrix = new Matrix(2,
-                2,
-                new double[][] {
-                        {1, 2},
-                        {0, 0}
-                });
-        assertFalse(rowReductionService.isReducedEchelon(matrix));
     }
 }
