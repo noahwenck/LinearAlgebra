@@ -20,14 +20,14 @@ public class RowReductionService {
      * @param scalar scale for sourceRow
      * @param matrix inputted matrix
      */
-    public void replacement(int targetRow, int sourceRow, double scalar, Matrix matrix) {
-        double[][] arrayRepresentation = matrix.getMatrix();
+    public Matrix replacement(int targetRow, int sourceRow, double scalar, Matrix matrix) {
+        double[][] arrayRepresentation = matrix.getMatrix();    // todo: consider changing this name? differs from convention set in MatrixService
         for (int column = 0; column < matrix.getCols(); column++) {
             arrayRepresentation[targetRow][column] =
                     (arrayRepresentation[targetRow][column]
                             + arrayRepresentation[sourceRow][column] * scalar);
         }
-        matrix.setMatrix(arrayRepresentation);
+        return new Matrix(matrix.getRows(), matrix.getCols(), arrayRepresentation);
     }
 
     /**
@@ -37,12 +37,12 @@ public class RowReductionService {
      * @param sourceRow row to be swapped with targetRow
      * @param matrix inputted matrix
      */
-    public void interchange(int targetRow, int sourceRow, Matrix matrix) {
+    public Matrix interchange(int targetRow, int sourceRow, Matrix matrix) {
         double[][] arrayRepresentation = matrix.getMatrix();
         double[] temp = arrayRepresentation[targetRow];
         arrayRepresentation[targetRow] = arrayRepresentation[sourceRow];
         arrayRepresentation[sourceRow] = temp;
-        matrix.setMatrix(arrayRepresentation);
+        return new Matrix(matrix.getRows(), matrix.getCols(), arrayRepresentation);
     }
 
     /**
@@ -52,11 +52,11 @@ public class RowReductionService {
      * @param scalar scale for targetRow
      * @param matrix inputted matrix
      */
-    public void scaling(int targetRow, double scalar, Matrix matrix) {
+    public Matrix scaling(int targetRow, double scalar, Matrix matrix) {
         double[][] arrayRepresentation = matrix.getMatrix();
         for (int column = 0; column < matrix.getCols(); column++) {
             arrayRepresentation[targetRow][column] = arrayRepresentation[targetRow][column] * scalar;
         }
-        matrix.setMatrix(arrayRepresentation);
+        return new Matrix(matrix.getRows(), matrix.getCols(), arrayRepresentation);
     }
 }

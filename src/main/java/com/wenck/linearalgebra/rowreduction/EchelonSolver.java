@@ -3,6 +3,9 @@ package com.wenck.linearalgebra.rowreduction;
 import com.wenck.linearalgebra.matrix.Matrix;
 import org.springframework.stereotype.Service;
 
+/**
+ * Solver class responsible for processes related to Echelon and Reduced Echelon Form
+ */
 @Service
 public class EchelonSolver {
 
@@ -80,7 +83,7 @@ public class EchelonSolver {
 
     }
 
-    // todo: should these three methods be elsewhere? (are they needed for other operations)
+    // todo: should these three methods be elsewhere? (are they needed for other non-echelon operations)
     /**
      * Determines what column a row's pivot is in
      *

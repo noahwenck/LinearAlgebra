@@ -115,7 +115,6 @@ public class MatrixService {
      * @return transpose of the inputted matrix
      */
     public Matrix transpose(Matrix targetMatrix) {
-        Matrix matrix = new Matrix(targetMatrix.getCols(), targetMatrix.getRows());
         double[][] transposeArray = new double[targetMatrix.getCols()][targetMatrix.getRows()];
         for (int column = 0; column < targetMatrix.getCols(); column++) {
             for (int row = 0; row < targetMatrix.getRows(); row++) {
