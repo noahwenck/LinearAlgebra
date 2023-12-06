@@ -110,4 +110,17 @@ public class Matrix {
         }
         return true;
     }
+
+    /**
+     * FOR DEBUG PURPOSES ONLY
+     */
+    public void display() {
+        System.out.println("\n" + getRows() + " x " + getCols() + " Matrix\n");
+        for (int row = 0; row < getRows(); row++) {
+            for (int column = 0; column < getCols(); column++) {
+                System.out.print(getMatrix()[row][column] + " ");
+            }
+            System.out.println();
+        }
+    }
 }

@@ -95,7 +95,7 @@ public class EchelonSolver {
     private int[] findPivots(Matrix matrix) {
         int[] ret = new int[matrix.getRows()];
         for (int r = 0; r < matrix.getRows(); r++) {
-            ret[r] = 0;
+            ret[r] = -1;
         }
         for (int r = 0; r < matrix.getRows(); r++) {
             for (int c = 0; c < matrix.getCols(); c++) {
@@ -114,7 +114,7 @@ public class EchelonSolver {
      * @param matrix the matrix to be checked
      * @return an array that indicates which rows are zero rows
      */
-    private int[] zeroRow(Matrix matrix) {
+    public int[] zeroRow(Matrix matrix) {
         int[] ret = new int[matrix.getRows()];
         int zeroCount = 0;
 
