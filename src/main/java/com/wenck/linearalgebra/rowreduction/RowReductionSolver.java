@@ -1,6 +1,7 @@
 package com.wenck.linearalgebra.rowreduction;
 
 import com.wenck.linearalgebra.matrix.Matrix;
+import com.wenck.linearalgebra.matrix.MatrixService;
 
 /**
  * Solver class for the Row Reduction Algorithm
@@ -8,17 +9,20 @@ import com.wenck.linearalgebra.matrix.Matrix;
 public class RowReductionSolver {
 
     private EchelonSolver echelonSolver;
+    private MatrixService matrixService;
     private RowReductionService rowReductionService;
 
     public RowReductionSolver(EchelonSolver echelonSolver,
+                              MatrixService matrixService,
                               RowReductionService rowReductionService) {
         this.echelonSolver = echelonSolver;
+        this.matrixService = matrixService;
         this.rowReductionService = rowReductionService;
     }
 
     public Matrix rowReduction(Matrix matrix) {
 
-        int[] zeroCol = echelonSolver.zeroRow(matrix);
+        boolean[] zeroCol = matrixService.zeroRow(matrix);   // idk what I did wrong at first but it worked better than it does now
 
         matrix = moveZeroRowsBelow(matrix);
 
@@ -44,12 +48,12 @@ public class RowReductionSolver {
         return matrix;
     }
 
-    public int stepOne(int[] zeroCol) {
+    public int stepOne(boolean[] zeroCol) {
         int pivotColumn = -1;
 
         // Finds the first nonzero column
-        for (int column : zeroCol) {
-            if (zeroCol[column] == 0) {
+        for (int column = 0; column < zeroCol.length; column++) {
+            if (zeroCol[column] == false) {
                 pivotColumn = column;
                 break;
             }
@@ -88,21 +92,21 @@ public class RowReductionSolver {
     // todo: javadoc + private?
     public Matrix moveZeroRowsBelow(Matrix matrix) {
         Matrix returnMatrix = matrix;
-        int[] zeroRow = echelonSolver.zeroRow(matrix);
+        boolean[] zeroRow = matrixService.zeroRow(matrix);
         // Moves all nonzero rows above zero rows;
         for (int r = 0; r < matrix.getRows() - 1; r++) {
-            if (zeroRow[r] == 1 && zeroRow[r + 1] == 0) {
+            if (zeroRow[r] == true && zeroRow[r + 1] == false) {
                 int lowZero = r;
                 for (int back = r - 1; back >= 0; back--) { // Searches for topmost zero row
-                    if (zeroRow[back] == 1) {
+                    if (zeroRow[back] == true) {
                         lowZero = back;
                     }
                 }
                 returnMatrix = rowReductionService.interchange((r+1), lowZero, matrix);
 
                 // Updates zeroRow
-                zeroRow[r+1] = 1;
-                zeroRow[lowZero] = 0;
+                zeroRow[r+1] = true;
+                zeroRow[lowZero] = false;
             }
         }
         return returnMatrix;

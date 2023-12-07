@@ -1,6 +1,7 @@
 package com.wenck.linearalgebra.rowreduction;
 
 import com.wenck.linearalgebra.matrix.Matrix;
+import com.wenck.linearalgebra.matrix.MatrixService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,6 +20,8 @@ public class RowReductionSolverTest {
     private RowReductionSolver rowReductionSolver;
     @Mock
     private EchelonSolver echelonSolver;
+    @Mock
+    private MatrixService matrixService;
     @Mock
     private RowReductionService rowReductionService;
 
@@ -39,7 +42,7 @@ public class RowReductionSolverTest {
                 });
 
 
-        doCallRealMethod().when(echelonSolver).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
         doCallRealMethod().when(rowReductionService).interchange(anyInt(), anyInt(), any(Matrix.class));
 
         Matrix testMatrix = rowReductionSolver.moveZeroRowsBelow(matrix);
@@ -48,7 +51,7 @@ public class RowReductionSolverTest {
 
     @Test
     void testStepOne() {
-        int[] zeroCol = {1, 0};
+        boolean[] zeroCol = {true, false};
 
         int pivotColumn = rowReductionSolver.stepOne(zeroCol);
         assertEquals(1, pivotColumn);
@@ -124,7 +127,7 @@ public class RowReductionSolverTest {
                         {0, 0, 0}
                 });
 
-        doCallRealMethod().when(echelonSolver).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
         doCallRealMethod().when(rowReductionService).interchange(anyInt(), anyInt(), any(Matrix.class));
         doCallRealMethod().when(rowReductionService).replacement(anyInt(), anyInt(), anyDouble(), any(Matrix.class));
         doCallRealMethod().when(rowReductionService).scaling(anyInt(), anyDouble(), any(Matrix.class));

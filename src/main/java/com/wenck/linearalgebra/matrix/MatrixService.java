@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+// todo: maybe turn service classes into static util? remove dependency Injection?
 /**
  * Service classes for backend processes relating to matrices
  */
@@ -123,5 +124,79 @@ public class MatrixService {
         }
 
         return new Matrix(targetMatrix.getCols(), targetMatrix.getRows(), transposeArray);
+    }
+
+    // todo: why column a row's pivot and not row a column's pivot?
+    /**
+     * Determines what column a row's pivot is in
+     *
+     * For Example: the identity matrix would return the array -> [0, 1]
+     *
+     * @param matrix inputted matrix
+     * @return array that indicates what column a row's pivot is in
+     */
+    public int[] findPivots(Matrix matrix) {
+        int[] ret = new int[matrix.getRows()];
+        for (int r = 0; r < matrix.getRows(); r++) {
+            ret[r] = -1;
+        }
+        for (int r = 0; r < matrix.getRows(); r++) {
+            for (int c = 0; c < matrix.getCols(); c++) {
+                if (matrix.getMatrix()[r][c] != 0) {    // Determines pivot of each row
+                    ret[r] = c;
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * Creates an array that represents if rows of this matrix are zero rows
+     *
+     * @param matrix the matrix to be checked
+     * @return an array that indicates which rows are zero rows
+     */
+    public boolean[] zeroRow(Matrix matrix) {
+        boolean[] zeroRow = new boolean[matrix.getRows()];
+        for (int row = 0; row < matrix.getRows(); row++) {
+            zeroRow[row] = true;    // have to initialize everything now with how I've changed it
+        }
+
+        for (int row = 0; row < matrix.getRows(); row++) {
+            for (int column = 0; column < matrix.getCols(); column++) {
+                if (matrix.getMatrix()[row][column] != 0) {
+                    zeroRow[row] = false;
+                    break;
+                }
+            }
+        }
+
+        return zeroRow;
+    }
+
+    // TODO: verify use
+    /**
+     * Creates an array that represents if columns of this matrix are zero columns
+     *
+     * @param matrix the matrix to be checked
+     * @return an array that indicates which columns are zero columns
+     */
+    public boolean[] zeroColumn(Matrix matrix) {
+        boolean[] zeroCol = new boolean[matrix.getCols()];
+        for (int column = 0; column < matrix.getRows(); column++) {
+            zeroCol[column] = true;    // have to initialize everything now with how I've changed it
+        }
+
+        for (int column = 0; column < matrix.getCols(); column++) {
+            for (int row = 0; row < matrix.getRows(); row++) {
+                if (matrix.getMatrix()[row][column] != 0) {
+                    zeroCol[column] = false;
+                    break;
+                }
+            }
+        }
+
+        return zeroCol;
     }
 }

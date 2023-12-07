@@ -5,8 +5,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test class for {@link MatrixService}
@@ -153,5 +154,35 @@ public class MatrixServiceTest {
 
         Matrix testMatrix = matrixService.transpose(inputMatrix);
         assertTrue(testMatrix.equals(expectedMatrix));
+    }
+
+    @Test
+    void testZeroRow() {
+        Matrix matrix = new Matrix(3,
+                3,
+                new double[][] {
+                        {0, 0, 0},
+                        {0, 0, 1},
+                        {0, 0, 0}
+                });
+        boolean[] expectedZeroRow = {true, false, true};
+
+        boolean[] zeroRow = matrixService.zeroRow(matrix);
+        assertTrue(Arrays.equals(expectedZeroRow, zeroRow));
+    }
+
+    @Test
+    void testZeroColumn() {
+        Matrix matrix = new Matrix(3,
+                3,
+                new double[][] {
+                        {0, 0, 0},
+                        {0, 0, 0},
+                        {0, 1, 1}
+                });
+        boolean[] expectedZeroColumn = {true, false, false};
+
+        boolean[] zeroColumn = matrixService.zeroColumn(matrix);
+        assertTrue(Arrays.equals(expectedZeroColumn, zeroColumn));
     }
 }

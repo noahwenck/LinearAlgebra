@@ -1,23 +1,33 @@
 package com.wenck.linearalgebra.rowreduction;
 
 import com.wenck.linearalgebra.matrix.Matrix;
+import com.wenck.linearalgebra.matrix.MatrixService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doCallRealMethod;
 
 @ExtendWith(MockitoExtension.class)
 public class EchelonSolverTest {
 
     @InjectMocks
     private EchelonSolver echelonSolver;
+    @Mock
+    MatrixService matrixService;
 
     @Test
     void testIdentityIsEchelon() {
         Matrix matrix = new Matrix();
+
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).findPivots(any(Matrix.class));
+
         assertTrue(echelonSolver.isEchelon(matrix));
     }
 
@@ -29,6 +39,10 @@ public class EchelonSolverTest {
                         {0, 0},
                         {1, 0}
                 });
+
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).findPivots(any(Matrix.class));
+
         assertFalse(echelonSolver.isEchelon(matrix));
     }
 
@@ -40,6 +54,10 @@ public class EchelonSolverTest {
                         {0, 1},
                         {1, 0}
                 });
+
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).findPivots(any(Matrix.class));
+
         assertFalse(echelonSolver.isEchelon(matrix));
     }
 
@@ -51,12 +69,20 @@ public class EchelonSolverTest {
                         {1, 0},
                         {1, 0}
                 });
+
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).findPivots(any(Matrix.class));
+
         assertFalse(echelonSolver.isEchelon(matrix));
     }
 
     @Test
     void testIdentityIsReducedEchelon() {
         Matrix matrix = new Matrix();
+
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).findPivots(any(Matrix.class));
+
         assertTrue(echelonSolver.isReducedEchelon(matrix));
     }
 
@@ -68,6 +94,10 @@ public class EchelonSolverTest {
                         {2, 0},
                         {0, 0}
                 });
+
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).findPivots(any(Matrix.class));
+
         assertFalse(echelonSolver.isReducedEchelon(matrix));
     }
 
@@ -79,6 +109,10 @@ public class EchelonSolverTest {
                         {1, 2},
                         {0, 0}
                 });
+
+        doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
+        doCallRealMethod().when(matrixService).findPivots(any(Matrix.class));
+
         assertFalse(echelonSolver.isReducedEchelon(matrix));
     }
 }
