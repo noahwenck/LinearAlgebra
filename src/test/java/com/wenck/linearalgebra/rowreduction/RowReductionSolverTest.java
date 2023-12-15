@@ -127,6 +127,7 @@ public class RowReductionSolverTest {
                         {0, 0, 0}
                 });
 
+        doCallRealMethod().when(matrixService).zeroColumn(any(Matrix.class));
         doCallRealMethod().when(matrixService).zeroRow(any(Matrix.class));
         doCallRealMethod().when(rowReductionService).interchange(anyInt(), anyInt(), any(Matrix.class));
         doCallRealMethod().when(rowReductionService).replacement(anyInt(), anyInt(), anyDouble(), any(Matrix.class));

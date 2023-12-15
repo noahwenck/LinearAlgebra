@@ -22,7 +22,7 @@ public class RowReductionSolver {
 
     public Matrix rowReduction(Matrix matrix) {
 
-        boolean[] zeroCol = matrixService.zeroRow(matrix);   // idk what I did wrong at first but it worked better than it does now
+        boolean[] zeroCol = matrixService.zeroColumn(matrix);
 
         matrix = moveZeroRowsBelow(matrix);
 
@@ -45,6 +45,25 @@ public class RowReductionSolver {
         // Use row replacement operations to create zeros in all positions below the pivot.
         matrix = stepThree(pivotColumn, matrix);
 
+//        if (matrix.getRows() > 1 || matrix.getCols() > 1) {
+//            double[][] smallArray = new double[matrix.getRows() - 1][matrix.getCols() - 1];
+//            for (int row = 1; row < matrix.getRows(); row++) {
+//                for (int column = 1; column < matrix.getCols(); column++) {
+//                    smallArray[row - 1][column - 1] = matrix.getMatrix()[row][column];
+//                }
+//            }
+//            Matrix smallMatrix = new Matrix(matrix.getRows() - 1,
+//                    matrix.getCols() - 1,
+//                    smallArray
+//            );
+//
+//            smallMatrix = rowReduction(smallMatrix);
+//
+//
+//            return smallMatrix;
+//        } else {
+//            return matrix;
+//        }
         return matrix;
     }
 
