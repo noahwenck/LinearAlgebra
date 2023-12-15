@@ -33,7 +33,7 @@ tasks.named('test') {
 }
 
 pmd {
-    consoleOutput = true
+    incrementalAnalysis = true;
     toolVersion = "6.52.0"
 }
 

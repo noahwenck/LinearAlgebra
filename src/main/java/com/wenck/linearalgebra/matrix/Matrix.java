@@ -27,6 +27,7 @@ public class Matrix {
      * @param rows number of rows
      * @param cols number of columns
      */
+    @SuppressWarnings("PMD.AvoidLiteralsInIfCondition") // would be more confusing without
     public Matrix(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
@@ -114,6 +115,7 @@ public class Matrix {
     /**
      * FOR DEBUG PURPOSES ONLY
      */
+    @SuppressWarnings("PMD.SystemPrintln") // used solely for debugging
     public void display() {
         System.out.println("\n" + getRows() + " x " + getCols() + " Matrix\n");
         for (int row = 0; row < getRows(); row++) {

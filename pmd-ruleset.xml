@@ -15,7 +15,7 @@
     </rule>
 
     <rule ref="category/java/codestyle.xml">
-
+        <exclude name="MethodArgumentCouldBeFinal"/> <!-- i'm lazy -->
     </rule>
 
     <rule ref="category/java/design.xml">
