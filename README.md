@@ -25,7 +25,7 @@ once I've gotten a good start and have something tangible
 
 ### todo
 1. Develop Frontend (Function over beauty)
-2. Implement Row Reduction after matrix setup
+2. Implement Row Reduction after matrix setup (rethink how to implement)
 3. Configure Gradle
 4. PMD? cant believe I actually put that on a todo list to add to this
 5. Row reduction is the focus, but consider other topics 
